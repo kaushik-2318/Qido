@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>QR Code</title>
+</head>
+<body>
+    <nav>
+        QR Code Generator
+    </nav>
+    <main>
+        <ul class="link">
+            <li><button class="button b1">URL</button></li>
+            <li><button class="button b2">Text</button></li>
+            <li><button class="button b3">WhatsApp</button></li>
+            <li><button class="button b4">SMS</button></li>
+        </ul>
+        <div class="container">
+            <div class="content">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=example" class="img1">
+                <input type="url" placeholder="URL" class="input">
+
+                <div class="text">
+                    <div class="size">
+                        SIZE:-
+                    </div>
+                    <div class="inp1">
+                        <div><input type="number" class="inp i1" placeholder="Width">px</div>
+                        <br>
+                        <div><input type="number" class="inp i2" placeholder="Height">px</div>
+                    </div> 
+                </div>
+
+                <button class="btn1">Generate QR</button>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".btn1").on("click", function(){
+                const i1 = $(".i1");
+                const i2 = $(".i2");
+                $(".img1").css("width",`${i1.val()}`)
+                $(".img1").css("height",`${i2.val()}`)
+                const k = $(".input");
+                $('.img1').attr("src",`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${k.val()}`)
+            })
+        })
+    </script>
+</body>
+</html>

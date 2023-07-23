@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.img{
+    width: 100%;
+    height: 200px;
+}
+nav{
+    background-image: url(moisture-colorful-3840x1080-9732.jpg);
+    width: 100%;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    display: grid;
+    place-content: center;
+    font-size: 100px;
+}
+.link{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    font-size: 20px;
+    margin: 40px 50vh 0px 50vh;
+}
+.button{
+    padding: 10px 30px;
+    border-radius: 50px;
+    background-color: white;
+}
+.container{
+    display: grid;
+    place-content: center;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    margin-top: 50px;
+}
+.img1{
+    width: 200px;
+    height: 200px;
+}
+.input{
+    margin-top: 40px;
+    width: 85%;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    outline: none;
+}
+.text{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    align-items: center;
+}
+.size{
+    margin-right: 20px;
+}
+.inp1{
+    display: flex;
+    flex-direction: column;
+}
+.inp{
+    width: 100px;
+    outline: none;
+}
+.btn1{
+    margin-top: 30px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: white;
+    width: 85%;
+}
