@@ -77,3 +77,12 @@ nav{
     background-color: white;
     width: 85%;
 }
+.active{
+    background-color: #069cfa;
+    border: none;
+}
+.slider{
+    display: grid;
+    border: 1px solid red;
+    place-items: center;
+} 
