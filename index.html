@@ -27,8 +27,8 @@
                         SIZE:-
                     </div>
                     <div class="slider">
-                        <span id="rang">200</span>
-                        <input type="range" value="200" min="50" max="500" oninput="rang.innerText = this.value">
+                        <div><span id="rang">200</span> px</div>
+                        <input class="i1" type="range" value="200" min="50" max="500" oninput="rang.innerText = this.value">
                     </div> 
                 </div>
 
@@ -42,13 +42,14 @@
             $(".btn1").on("click", function(){
                 const k = $(".input");
                 $('.img1').attr("src",`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${k.val()}`)
+                $('.img1').css("width",`${$(".i1").val()}px`)
+                $('.img1').css("height",`${$(".i1").val()}px`)             
             })
             $(".button").on("click", function(){
                 $(".button").removeClass("active");
                 $(this).addClass("active");
                 $(".input").attr("placeholder",$(this).html())
             })
-
         })
     </script>
 </body>
