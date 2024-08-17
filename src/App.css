@@ -1,0 +1,10 @@
+.background {
+  background: url(./assets/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
