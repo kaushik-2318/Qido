@@ -72,7 +72,7 @@ function App() {
     const encodedString = encoder.encode(inputString);
     return encodedString.length;
   }
-  
+
   const handleFormatChange = (option) => {
     setFormat(option.value);
   }
@@ -227,6 +227,11 @@ function App() {
 
           </form>
         </div>
+
+        <footer className='text-white'>
+          Designed and Built by <a href="https://kaushikverma-portfolio.vercel.app/" target='blank' className='text-blue-600 font-bold'>Kaushik Verma</a> with React, Tailwind CSS, and QuickChart.io.
+        </footer>
+
       </div>
     </>
   )
