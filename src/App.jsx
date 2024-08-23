@@ -35,12 +35,11 @@ function App() {
       response = await fetch(`https://quickchart.io/qr?text=${text}&dark=${color}&light=${backgroundcolor}&ecLevel=Q&format=${format}&size=${sizeValue}&centerImageSizeRatio=${imageRatio}&centerImageUrl=${image}&caption=${caption}&captionFontFamily=${fontfamily}&captionFontSize=${fontsize}`);
     }
 
+    
     const blob = await response.blob();
-
-    setQrBlob(blob);
     setQr(response.url);
-    setDown(response);
     setLoading(false);
+    setQrBlob(blob);
   };
 
   const ToggleClass = () => {
@@ -126,18 +125,18 @@ function App() {
     <>
       <div className='bg-[#111729] background flex justify-center items-center flex-col gap-10 font-mono text-sm pt-10 sm:py-10' style={{ height: isActive ? "100vh" : "100%" }}>
 
-        <div className="text-blue-700 font-['Roboto'] uppercase text-4xl py-5 sm:p-0">QRCode Generator</div>
+        <div className="text-blue-700 font-['Roboto'] uppercase py-5 sm:p-0 text-3xl sm:text-4xl">QRCode Generator</div>
 
         <div className='flex justify-center items-center w-full '>
 
-          <div className='flex-col justify-center items-center gap-10' style={{ display: isActive ? "flex" : "none" }}>
+          <div className='flex-col justify-center items-center gap-10 text-xs sm:text-sm' style={{ display: isActive ? "flex" : "none" }}>
             <div className='relative z-20 flex justify-center items-center'>
               <div className='bg-[#1e2c51] rounded-full absolute w-[280px] h-[280px] -z-10'></div>
               {
                 loading ? <div className='z-10 rounded-xl w-[240px] h-[240px]'><Loading /></div> : <div><img className='z-10 rounded-xl w-[240px] h-[240px]' src={qr} alt="QR Code" /></div>
               }
             </div>
-            <div className='text-white'>
+            <div className='text-white text-center px-3'>
               (When you download or share it, you will get {sizeValue} X {sizeValue} QR Code.)
             </div>
             <div className='flex flex-col gap-3'>
@@ -149,20 +148,20 @@ function App() {
             </div>
           </div>
 
-          <form action="" onSubmit={handleSubmit} className={`flex flex-col justify-between text-[#a5afc2] font-medium border-t-4 sm:border-2 border-[#3662e3] bg-[#030617] p-5 sm:p-10 rounded-[30px] rounded-b-none sm:rounded-b-[30px] w-full sm:w-max duration-500  ${caption !== "" && image !== "" ? "h-[770px]" : caption !== "" ? "h-[690px]" : image !== "" ? "h-[650px] sm:h-[680px]" : "h-[630px] sm:h-[600px]"}`} style={{ display: isActive ? "none" : "flex" }}>
+          <form action="" onSubmit={handleSubmit} className={`flex flex-col justify-between text-[#a5afc2] font-medium border-t-4 sm:border-2 border-[#3662e3] bg-[#030617] p-5 sm:p-10 rounded-[30px] rounded-b-none sm:rounded-b-[30px] w-full sm:w-max duration-500  ${caption !== "" && image !== "" ? "h-[770px]" : caption !== "" ? "h-[690px]" : image !== "" ? "h-[650px] sm:h-[680px]" : "h-[600px]"}`} style={{ display: isActive ? "none" : "flex" }}>
             <div className='flex flex-col gap-10 h-max'>
 
-              <label className='flex justify-between items-center w-full'>
+              <label className='text-xs sm:text-sm flex justify-between items-center w-full'>
                 <div>Text: <span className='text-red-500'>*</span></div>
                 <input onInput={e => setText(e.target.value)} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" name="text" required />
               </label>
 
-              <label className='flex justify-between items-center gap-10 w-full'>
+              <label className='text-xs sm:text-sm flex justify-between items-center gap-10 w-full'>
                 <div>Format:</div>
                 <Dropdown options={formats.map(format => ({ value: format, label: format }))} onChange={handleFormatChange} placeholder="Select an option" className='w-48 font-normal' />
               </label>
 
-              <div className='flex flex-col sm:flex-row justify-between items-center gap-10'>
+              <div className='text-xs sm:text-sm flex flex-col sm:flex-row justify-between items-center gap-10'>
                 <label className='flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:items-start gap-3'>
                   <div>Size:</div>
                   <input onInput={e => setSizeValue(e.target.value)} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="number" placeholder='150px' />
@@ -175,9 +174,9 @@ function App() {
                 )}
               </div>
 
-              <div className='flex flex-col sm:flex-row justify-between items-center gap-10'>
+              <div className='text-xs sm:text-sm flex flex-col sm:flex-row justify-between items-center gap-10'>
                 <label className='flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:items-start gap-3'>
-                  <div>Background Color:</div>
+                  <div className='text-[11px] sm:text-sm'>Background Color:</div>
                   <input onInput={e => setBackgroundColor(e.target.value.replace(/^#/, ''))} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" placeholder='000000' />
                 </label>
                 <label className='flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:items-start gap-3'>
@@ -186,7 +185,7 @@ function App() {
                 </label>
               </div>
 
-              <div className='flex flex-col gap-10'>
+              <div className='text-xs sm:text-sm flex flex-col gap-10'>
                 <label className='flex  justify-between items-center gap-10 w-full'>
                   <div>Image in QR:</div>
                   <input onInput={e => setImage(e.target.value)} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" placeholder='URL' />
@@ -199,7 +198,7 @@ function App() {
                 )}
               </div>
 
-              <div className='flex flex-col gap-6'>
+              <div className='text-xs sm:text-sm flex flex-col gap-6'>
                 <label className='flex justify-between items-center gap-10 w-full'>
                   <div>Caption:</div>
                   <input onInput={e => setCaption(e.target.value)} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" />
@@ -220,7 +219,7 @@ function App() {
 
             </div>
 
-            <div className='flex justify-around items-center flex-row gap-20 text-white font-medium'>
+            <div className='flex justify-around items-center flex-row gap-20 text-white font-medium text-xs sm:text-sm'>
               <button type="submit" className='bg-[#3662e3] px-10 py-3 rounded-md'>Submit</button>
               <button type="reset" className='bg-[#3662e3] px-10 py-3 rounded-md'>Reset</button>
             </div>
@@ -228,7 +227,7 @@ function App() {
           </form>
         </div>
 
-        <footer className='text-white'>
+        <footer className='text-white text-center pb-10 sm:pb-0 text-xs sm:text-sm px-3'>
           Designed and Built by <a href="https://kaushikverma-portfolio.vercel.app/" target='blank' className='text-blue-600 font-bold'>Kaushik Verma</a> with React, Tailwind CSS, and QuickChart.io.
         </footer>
 
