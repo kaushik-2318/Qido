@@ -3,6 +3,8 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import React, { useState } from 'react';
 import Loading from './components/Loader'
+import { colorNameList } from 'color-name-list';
+
 
 function App() {
 
@@ -34,8 +36,6 @@ function App() {
     else {
       response = await fetch(`https://quickchart.io/qr?text=${text}&dark=${color}&light=${backgroundcolor}&ecLevel=Q&format=${format}&size=${sizeValue}&centerImageSizeRatio=${imageRatio}&centerImageUrl=${image}&caption=${caption}&captionFontFamily=${fontfamily}&captionFontSize=${fontsize}`);
     }
-
-    
     const blob = await response.blob();
     setQr(response.url);
     setLoading(false);
@@ -50,34 +50,17 @@ function App() {
     e.preventDefault();
     const inputString = text;
     const byteSize = calculateBytes(inputString);
-
     if (text === "") {
       alert("Please fill Text Field");
       return;
     }
-
     if (byteSize > 1669) {
       alert("The Amout of data is too bid to store in QR Code");
       return
     }
-
-    qrcode();
     ToggleClass();
     setLoading(true);
-  }
-
-  function calculateBytes(inputString) {
-    const encoder = new TextEncoder();
-    const encodedString = encoder.encode(inputString);
-    return encodedString.length;
-  }
-
-  const handleFormatChange = (option) => {
-    setFormat(option.value);
-  }
-
-  const handleImageRatioChange = (option) => {
-    setImageRatio(option.value);
+    qrcode();
   }
 
   const handleDownload = async () => {
@@ -119,6 +102,63 @@ function App() {
 
   const handleBack = () => {
     ToggleClass();
+  }
+
+  const handleFormatChange = (option) => {
+    setFormat(option.value);
+  }
+
+  const handleImageRatioChange = (option) => {
+    setImageRatio(option.value);
+  }
+
+  const handleBackgroundColor = (e) => {
+    e = e.target.value;
+    if (isHexCode(e)) {
+      e = removeHastag(e);
+      setBackgroundColor(e);
+    }
+    else {
+      e = capitalizeFirstLetter(e);
+      let someNamedColor = colorNameList.find(color => color.name === e);
+      let color = someNamedColor.hex;
+      color = removeHastag(color);
+      setBackgroundColor(color);
+    }
+  }
+
+  const handleColor = (e) => {
+    e = e.target.value;
+    if (isHexCode(e)) {
+      e = removeHastag(e);
+      setColor(e);
+    }
+    else {
+      e = capitalizeFirstLetter(e);
+      let someNamedColor = colorNameList.find(color => color.name === e);
+      let color = someNamedColor.hex;
+      color = removeHastag(color);
+      setColor(color);
+    }
+  }
+
+  const removeHastag = (e) => {
+    return e.replace('#', '');
+  }
+
+  function isHexCode(input) {
+    const hexPattern = /^#([0-9a-fA-F]{3}){1,2}$/;
+    return hexPattern.test(input);
+  }
+
+  function calculateBytes(inputString) {
+    const encoder = new TextEncoder();
+    const encodedString = encoder.encode(inputString);
+    return encodedString.length;
+  }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   return (
@@ -177,11 +217,11 @@ function App() {
               <div className='text-xs sm:text-sm flex flex-col sm:flex-row justify-between items-center gap-10'>
                 <label className='flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:items-start gap-3'>
                   <div className='text-[11px] sm:text-sm'>Background Color:</div>
-                  <input onInput={e => setBackgroundColor(e.target.value.replace(/^#/, ''))} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" placeholder='000000' />
+                  <input onInput={handleBackgroundColor} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" placeholder='Black/#000000' />
                 </label>
                 <label className='flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:items-start gap-3'>
                   <div>QR Code Color:</div>
-                  <input onInput={e => setColor(e.target.value.replace(/^#/, ''))} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" placeholder='FFFFFF' />
+                  <input onInput={handleColor} className='font-normal p-1 px-3 text-black outline-none rounded-sm w-48' type="text" placeholder='White/#FFFFFF' />
                 </label>
               </div>
 
