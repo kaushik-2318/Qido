@@ -3,7 +3,8 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import React, { useState } from 'react';
 import Loading from './components/Loader'
-import { colorNameList } from 'color-name-list';
+import colorName from 'color-name';
+import colorConvert from 'color-convert';
 
 
 function App() {
@@ -83,7 +84,6 @@ function App() {
     }
   };
 
-
   const handleShare = async () => {
     try {
       if (!qrBlob) {
@@ -98,7 +98,6 @@ function App() {
       alert("Error copying image to clipboard. Please try again.");
     }
   };
-
 
   const handleBack = () => {
     ToggleClass();
@@ -120,8 +119,7 @@ function App() {
     }
     else {
       e = capitalizeFirstLetter(e);
-      let someNamedColor = colorNameList.find(color => color.name === e);
-      let color = someNamedColor.hex;
+      let color = getHexCode(e);
       color = removeHastag(color);
       setBackgroundColor(color);
     }
@@ -135,8 +133,7 @@ function App() {
     }
     else {
       e = capitalizeFirstLetter(e);
-      let someNamedColor = colorNameList.find(color => color.name === e);
-      let color = someNamedColor.hex;
+      let color = getHexCode(e);
       color = removeHastag(color);
       setColor(color);
     }
@@ -159,6 +156,14 @@ function App() {
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function getHexCode(colorNameInput) {
+    const rgbArray = colorName[colorNameInput.toLowerCase()];
+    if (!rgbArray) {
+      return null; // Return null if color name is not found
+    }
+    return `#${colorConvert.rgb.hex(rgbArray)}`;
   }
 
   return (
