@@ -56,7 +56,7 @@ function App() {
       return;
     }
     if (byteSize > 1669) {
-      alert("The Amout of data is too bid to store in QR Code");
+      alert("The Amout of data is too big to store in QR Code");
       return
     }
     ToggleClass();
@@ -161,7 +161,7 @@ function App() {
   function getHexCode(colorNameInput) {
     const rgbArray = colorName[colorNameInput.toLowerCase()];
     if (!rgbArray) {
-      return null; // Return null if color name is not found
+      return null;
     }
     return `#${colorConvert.rgb.hex(rgbArray)}`;
   }
