@@ -5,6 +5,7 @@ export default function Footer() {
       <a
         href="https://www.kaushikverma.me/"
         className="font-bold text-blue-600 transition-all duration-1000 hover:underline"
+        target="_blank"
       >
         Kaushik Verma
       </a>{" "}
