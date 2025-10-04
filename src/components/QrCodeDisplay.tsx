@@ -45,7 +45,7 @@ export function QrCodeDisplay({
           <div className="grid w-full grid-cols-2 gap-4">
             <button
               onClick={onDownload}
-              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-4 font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:scale-[1.02] hover:from-emerald-600 hover:to-teal-600 hover:shadow-emerald-500/40 active:scale-[0.98]"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-4 font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:scale-[1.02] hover:from-emerald-600 hover:to-teal-600 hover:shadow-emerald-500/40 active:scale-[0.98]"
             >
               <Download className="h-5 w-5" />
               Download
@@ -53,7 +53,7 @@ export function QrCodeDisplay({
 
             <button
               onClick={onShare}
-              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 py-4 font-semibold text-white shadow-lg shadow-violet-500/25 transition-all duration-300 hover:scale-[1.02] hover:from-violet-600 hover:to-fuchsia-600 hover:shadow-violet-500/40 active:scale-[0.98]"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 py-4 font-semibold text-white shadow-lg shadow-violet-500/25 transition-all duration-300 hover:scale-[1.02] hover:from-violet-600 hover:to-fuchsia-600 hover:shadow-violet-500/40 active:scale-[0.98]"
             >
               <Copy className="h-5 w-5" />
               Copy
